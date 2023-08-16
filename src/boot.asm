@@ -1,4 +1,5 @@
-                    mov     esi, 0x7c00+msj
+org     0x7c00
+                    mov     esi, msj
                     mov     ah, 0xE
                     mov     cx, endmsj - msj
 writeLoop:
@@ -12,7 +13,7 @@ writeLoop:
 msj db 'Hello from the boot sector!', 10, 13
 endmsj:
 
-                    ; PADDING & BIOS MAGIC
+                    ; PADDING & BIOS NUMBER
          
 
 times 510-($-$$) 	db      0
