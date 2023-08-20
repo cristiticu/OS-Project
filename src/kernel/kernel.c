@@ -1,6 +1,5 @@
 char toPrint = 'A';
-char* testbss = 'SUNT IN BSS';
-
+char* str = "Sunt in bss?";
 char f(){
     return 'K';
 }
@@ -13,5 +12,5 @@ void start(){
     toPrint = 'm';
     VIDEO_MEMORY[100] = f();
     VIDEO_MEMORY[102] = toPrint;
-    VIDEO_MEMORY[104] = testbss[2];
+    VIDEO_MEMORY[104] = str[3];
 }
