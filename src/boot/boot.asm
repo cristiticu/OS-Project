@@ -121,6 +121,6 @@ times 510-($-$$) 	db      0                                   ;Setam ce a mai ra
                     dw      0xaa55                              ;special pentru BIOS la final
                     
                     
+                
                     
-                    
-                    
+                

@@ -13,7 +13,6 @@ printFromAdress:                            ;printFromAdress: subrutina ia adres
     pop     bx
     pop     ax
     ret
-
     
     
 convertHexToString:                          ;convertHexToString: subrutina ia numarul din bx
@@ -42,7 +41,6 @@ convertHexToString:                          ;convertHexToString: subrutina ia n
     pop     bx
     pop     ax
     ret
-    
     
     
 printHexNumber:                                             ;Wrapper pentru a afisa pe ecran un numar hexa retinut in registrul bx
