@@ -75,8 +75,8 @@ prepareRegisters:
                     mov     byte [DRIVE_ID], dl             ;Salvam ID-ul drive-ului pe care suntem
                     
 progStart:                                                  ;Aici incepe efectiv programul bootloader
-                    mov     bx, msj
-                    call    printFromAdress                 ;Test 1 Hello World  
+                    ;mov     bx, msj
+                    ;call    printFromAdress                 ;Test 1 Hello World  
                     mov     bx, KERNEL_OFFSET               ;Incarcam kernel-ul scris in C la adresa 0x1000
                     mov     dl, byte [DRIVE_ID]             ;Driveul salvat
                     mov     ah, 0x02                        ;Citim
@@ -85,6 +85,9 @@ progStart:                                                  ;Aici incepe efectiv
                     mov     dh, 0
                     mov     cl, 2
                     int     0x13
+                    mov     al, 0x13                        ;MODUL DE GRAFICA PE PIXELI, 320 X 200 memorie VGA
+                    mov     ah, 0
+                    int     0x10
                     cli                                     ;Incepem schimbarea catre 32 de biti
                     lgdt    [GDT_DESCRIPTOR]                ;setam LGDT
                     mov     eax, cr0

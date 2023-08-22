@@ -10,13 +10,16 @@ all: os.bin
 run: all
 	../utils/qemu-system-x86_64.exe os.bin
 
+dbg: all
+	../utils/qemu-system-x86_64.exe os.bin -monitor stdio
+
 os.bin: kernel/kernel.bin boot/boot_sector.bin
 	copy boot\boot_sector.bin/b+kernel\kernel.bin/b os.bin/b
 
-kernel/kernel.bin: kernel/kernel.temp
+kernel/kernel.bin: kernel/kernel.elf
 	objcopy -O binary $< $@
 
-kernel/kernel.temp: kernel/kernel_entry.o ${OBJ}
+kernel/kernel.elf: kernel/kernel_entry.o ${OBJ}
 	ld -o $@ -T ../utils/linkercfg.ld $^ -nostdlib
 
 %.o: %.c ${HEADERS}
@@ -25,5 +28,5 @@ kernel/kernel.temp: kernel/kernel_entry.o ${OBJ}
 %.o: %.asm
 	../utils/nasm -f elf $< -o $@
 
-$.bin: %.asm
+boot/boot_sector.bin: boot/boot.asm
 	../utils/nasm -f bin $< -o $@
