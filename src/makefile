@@ -19,13 +19,19 @@ os.bin: kernel/kernel.bin boot/boot_sector.bin
 kernel/kernel.bin: kernel/kernel.elf
 	objcopy -O binary $< $@
 
-kernel/kernel.elf: kernel/kernel_entry.o ${OBJ}
+kernel/kernel.elf: kernel/kernel_entry.o kernel/intrerrupts.o kernel/paging_low.o ${OBJ} 
 	ld -o $@ -T ../utils/linkercfg.ld $^ -nostdlib
 
 %.o: %.c ${HEADERS}
 	gcc -ffreestanding -c $< -o $@
 
 %.o: %.asm
+	../utils/nasm -f elf $< -o $@
+
+kernel/paging_low.o: kernel/paging_low.asm
+	../utils/nasm -f elf $< -o $@
+
+kernel/intrerrupts.o: kernel/intrerrupts.asm
 	../utils/nasm -f elf $< -o $@
 
 boot/boot_sector.bin: boot/boot.asm

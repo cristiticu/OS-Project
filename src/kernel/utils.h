@@ -3,8 +3,8 @@
 
 #include "data_types.h"
 
-void memcpy(u8* source, u8* destination, u32 nrbytes);
+void kmemcpy(u8* const source, u8* const destination, const u32 nrbytes);
 
-void memset(u8* destination, u8 byte, u32 nrbytes);
+void kmemset(u8* const destination, const u8 byte, const u32 nrbytes);
 
 #endif
