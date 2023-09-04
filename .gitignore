@@ -1,4 +1,8 @@
 C:\Users\crist\Desktop\Main Storage\Coding Projects\OS-Project\utils
 C:\Users\crist\Desktop\Main Storage\Coding Projects\OS-Project\utils\
 ./utils
+./src/*.o
+/src/*.o
+./src/*.elf
+/src/*.elf
 /utils
