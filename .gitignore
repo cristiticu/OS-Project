@@ -13,3 +13,4 @@
 ./src/drivers/*.bin
 ./src/kernel/*.bin
 ./src/kernel/kernel.bin
+*.bin
