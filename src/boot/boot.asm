@@ -31,6 +31,8 @@ WOB_TEXT                db   0x0f
 VIDEO_MEMORY            equ  0xb8000
 KERNEL_OFFSET           equ  0x1000
 msj                     db   'Pornit in Mod Real pe 16 biti', 10, 13, 0
+msj2                    db   'Incarcat kernel in memorie', 10, 13, 0
+msj3                    db   'Incarcat mod grafic. urmeaza salt pe 32', 10, 13, 0
 convertedHex            db   '0000', 0
 
                     
@@ -44,7 +46,7 @@ prepareRegisters:
                     mov     ds, ax
                     mov     ss, ax
                     mov     es, ax
-                    mov     bp, word 0x9000                 ;Creeam stack-ul intr-o zona de memorie departata
+                    mov     bp, word 0x9000                 ;Cream stack-ul intr-o zona de memorie departata
                     mov     sp, bp
                     sti                                     ;Repornim intreruperile
                     mov     byte [DRIVE_ID], dl             ;Salvam ID-ul drive-ului pe care suntem
@@ -52,17 +54,23 @@ prepareRegisters:
 progStart:                                                  ;Aici incepe efectiv programul bootloader
                     mov     bx, msj
                     call    printFromAdress                 ;Test 1 Hello World  
-                    mov     bx, KERNEL_OFFSET               ;Incarcam kernel-ul scris in C la adresa 0x1000
                     mov     dl, byte [DRIVE_ID]             ;Driveul salvat
                     mov     ah, 0x02                        ;Citim
                     mov     al, 32
                     mov     ch, 0
                     mov     dh, 0
                     mov     cl, 2
-                    int     0x13                            
+                    mov     bx, msj
+                    call    printFromAdress
+                    mov     bx, KERNEL_OFFSET               ;Incarcam kernel-ul scris in C la adresa 0x1000
+                    int     0x13
+                    mov     bx, msj2
+                    call    printFromAdress
                     mov     al, 0x13                        ;MODUL DE GRAFICA PE PIXELI, 320 X 200 memorie VGA
                     mov     ah, 0
                     int     0x10
+                    mov     bx, msj3
+                    call    printFromAdress
                     cli                                     ;Incepem schimbarea catre 32 de biti. ! DEZACTIVAM INTRERUPERILE! daca intram pe 32 de biti cu ele activate va fi haos
                     lgdt    [GDT_DESCRIPTOR]                ;setam LGDT.                                    exemple: vizual ecranul se strica, calculatorul se va restarta singur mereu
                     mov     eax, cr0

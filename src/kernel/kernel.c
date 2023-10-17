@@ -40,6 +40,6 @@ void start(){
             if(yoff > 160)
                 yoff = 3;
         }
-        //sleepTicks(1);
+        sleepTicks(1);
     }
 }
