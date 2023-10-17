@@ -1,8 +1,12 @@
-C:\Users\crist\Desktop\Main Storage\Coding Projects\OS-Project\utils
-C:\Users\crist\Desktop\Main Storage\Coding Projects\OS-Project\utils\
 ./utils
+./utils/
 ./src/*.o
 /src/*.o
 ./src/*.elf
 /src/*.elf
 /utils
+./src/*.bin
+./src/*.bat
+./src/boot/*.bin
+./src/drivers/*.bin
+./src/kernel/*.bin
