@@ -6,7 +6,10 @@
 /src/*.elf
 /utils
 ./src/*.bin
+./src/os.bin
 ./src/*.bat
 ./src/boot/*.bin
+./src/boot/boot_sector.bin
 ./src/drivers/*.bin
 ./src/kernel/*.bin
+./src/kernel/kernel.bin
